@@ -1,16 +1,70 @@
-# React + Vite
+# GameVault — Gaming Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Лабораторна робота №5 з курсу Frontend-розробки.  
+Веб-застосунок для пошуку та огляду ігор, побудований на React.
 
-Currently, two official plugins are available:
+## Технології
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** — функціональні компоненти, хуки (`useState`, `useEffect`)
+- **Vite 8** — збірка та dev-сервер
+- **Tailwind CSS 4** — стилізація (glassmorphism, dark theme)
+- **Lucide React** — іконки
 
-## React Compiler
+## Функціонал
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Фіча | Опис |
+|------|------|
+| Hero Section | Банер з featured-грою та кнопкою переходу до деталей |
+| Game Grid | Адаптивна сітка з 12 картками ігор |
+| Search | Пошук по назві та опису в реальному часі |
+| Genre Filter | Фільтрація: All / Action / RPG / Strategy |
+| Wishlist | Додавання в обране через ♥, збереження у `localStorage` |
+| Game Details | Модальне вікно з повним описом, платформами, тегами |
+| Trending | Окрема секція для популярних ігор |
 
-## Expanding the ESLint configuration
+## Структура проєкту
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── data/
+│   └── games.js              # Mock-дані ігор (12 шт.)
+├── components/
+│   ├── Header.jsx             # Шапка з пошуковим рядком
+│   ├── Sidebar.jsx            # Бічна навігація
+│   ├── HeroSection.jsx        # Головний банер
+│   ├── SearchBar.jsx          # Фільтр за жанрами
+│   ├── GameCard.jsx           # Картка гри
+│   └── GameModal.jsx          # Модальне вікно деталей
+└── App.jsx                    # Головний компонент
+```
+
+## Запуск
+
+```bash
+npm install
+npm run dev
+```
+
+Застосунок відкривається за адресою `http://localhost:5173`
+
+## Підключення реального API
+
+У файлі `src/App.jsx` є готовий коментар для підключення [RAWG API](https://rawg.io/apidocs):
+
+```js
+// useEffect(() => {
+//   fetch(`https://api.rawg.io/api/games?key=${import.meta.env.VITE_RAWG_KEY}`)
+//     .then(r => r.json())
+//     .then(data => setGames(data.results))
+// }, [])
+```
+
+Додайте файл `.env`:
+
+```
+VITE_RAWG_KEY=ваш_ключ
+```
+
+## Скріншоти
+
+> Dark theme · Glassmorphism картки · Адаптивний дизайн
